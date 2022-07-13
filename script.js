@@ -1,30 +1,32 @@
 const nextSlide = (container, i, sliders, prevItem) => {
-  container.querySelector('.Banner__next').addEventListener('click', () => {
 
-    if(i >= sliders.length - 1) {
-      i = 0;
-      prevItem = sliders[sliders.length - 1]
-    } else {
-      i++;
-      prevItem = sliders[i - 1];
-    }
+  const nextButton = container.querySelector('.Banner__next'), 
+        prevButton = container.querySelector('.Banner__prev');
 
-    sliders[i].style.display = 'block';
-    prevItem.style.display = 'none';
-  });
+  container.addEventListener('click', (e) => {
+      if(e.target === nextButton) {
+          if(i === sliders.length - 1) {
+            i = 0;
+            prevItem = sliders[sliders.length - 1]
+          } else {
+            i++;
+            prevItem = sliders[i - 1];
+          }
 
-  container.querySelector('.Banner__prev').addEventListener('click', () => {
-
-    if(i === 0) {
-      i = sliders.length - 1;
-      prevItem = sliders[0]
-    } else {
-      i--;
-      prevItem = sliders[i + 1];
-    }
-
-    sliders[i].style.display = 'block';
-    prevItem.style.display = 'none';
+          sliders[i].style.display = 'block';
+          prevItem.style.display = 'none';
+      } else if (e.target === prevButton){
+          if(i === 0) {
+              i = sliders.length - 1;
+              prevItem = sliders[0]
+            } else {
+              i--;
+              prevItem = sliders[i + 1];
+            }
+        
+            sliders[i].style.display = 'block';
+            prevItem.style.display = 'none';
+      }
   });
 
   setInterval(() => {
@@ -39,7 +41,6 @@ const slider = (container) => {
   sliders[0].style.display = 'block';
   prevItem.style.display = 'none';
   nextSlide(container, i, sliders, prevItem);
-  
 }
 
-slider(document.querySelector('.Banner'))
+slider(document.querySelector(".Banner"));
