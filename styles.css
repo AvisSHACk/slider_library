@@ -1,0 +1,26 @@
+img {
+  width:100%;
+}
+
+.Banner {
+  position:relative;
+}
+
+.Banner__item {
+  position:absolute;
+  display:none;
+  z-index:-1;
+  animation: fade .3s;
+
+  
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
